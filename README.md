@@ -1,9 +1,17 @@
 # Job-Recommendation-1.1-Web-scraping
-We are going to work on a Job recommendation system, to match CV and Job posts. <br>
+## Objective
+We are a team of five, and we are going to work on a Job recommendation system, to match CV and Job posts. <br>
 To create a databse for the job recommendations, we need to get data from the recruitment websites. <br>
 We chose to web scrape some jobs posts from JobsDB (URL: https://hk.jobsdb.com/hk)
 
-## 1. Understanding of websites
+## Table of Contents
+1. Understanding the websites
+2. The Code
+3. Conclusions
+4. Challenges
+5. Next Steps
+
+## 1. Understanding the websites
 
 First of all, we have to understand how the websites work and how the URL link can access to certain page. 
 Literally, how to go from main page to every job posts links
@@ -53,8 +61,6 @@ def URL_():
                 page_num.append(j)
     URL_all = []
     for i in range(1,int(page_num[-1])+1):
-        #URL_all = ("https://en.tripadvisor.com.hk/Restaurant_Review-g294217-d13283405-Reviews-or")
-        #URL_b = ("-Yardbird-Hong_Kong.html")
         URL_combine = URL_f + str(i)
         URL_all.append(URL_combine)
     return URL_all
@@ -70,6 +76,7 @@ for i in URL_():
     html_e = requests.get(i)
     everyjobpage = BeautifulSoup(html_e.text, "html.parser")
     links_all =[a['href'] for a in everyjobpage.select('a[href]')]
+    #we found that every job posts links got a common terms as "token", so we use this to differentiate with other links that we scraped 
     r = re.compile(r'.*token=')
     joblinks = list(filter(r.match, links_all))
     links.append(joblinks)
@@ -138,4 +145,21 @@ print(datetime.now() - startTime)
 ```
 jobs_all.to_csv("sciences-lab-research-development.csv")
 ```
+![result](images/web%scrap%result_csv.png.png)
 You are all set!
+
+## 3. Conclusions
+we get every job posts from the websites, though its a long process to get every jobs websites, from job functions > no. of pages > every job websites
+## 4. Challenges
+1. block by the website <br>
+some of computers doesn't have any problem in this area. While some other were not successful to proceed web-scraping a significant amount of jobs (e.g. 8000) in one time, and started to be blocked by website. Since we have time constraint in our project, so our immediate solution is to seperate them into 2000 jobs each time. 
+2. Time used on data collection<br>
+a/ for every job functions, given 8000 jobs, it takes around 25 minutes to get the data. if we need to update the whole project and make it as a real time, this has to be improved.<br>
+b/ the run time overall is long, at the beginning we try to put them in a function, however nested function cause longer time to run in our case, so after getting all the job websites, we store them into a list and continue the process. 
+
+## 5. Next steps
+1. develop to use selenium & find a faster way to get the data<br>
+at the beginning of the project, we try with beautiful soup first, and it works. In long run, we can develop with selenium and try to bypass website block.
+besides, to improve our codes to speed up the data collection process
+2. data in a batch in websites<br>
+as you can see from the results(table), the website itself they put the information into a batch, (e.g. additional information - html class_=<"FYwKg _1uk_1 _2fqoM_0 _1hqiH_0"> includes: [years of exeperience, job type, career level,etc] we we need to split them into columns, for details, please see part 2.
