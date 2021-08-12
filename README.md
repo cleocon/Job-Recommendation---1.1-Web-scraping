@@ -145,7 +145,7 @@ print(datetime.now() - startTime)
 ```
 jobs_all.to_csv("sciences-lab-research-development.csv")
 ```
-![result](images/web%scrap%result_csv.png.png)
+![result](images/web%20scrap%20result_csv.png)
 You are all set!
 
 ## 3. Conclusions
