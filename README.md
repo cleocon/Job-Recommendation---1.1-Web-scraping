@@ -1,6 +1,14 @@
+# Jobmigo - A Job / Talent recommendation platform
+## Objective
+We are a team of five, and we are going to work on a Job / Talent recommendation platform where one can match CV and Job posts. <br>
+
+## Table of Contents
+1.1 Web-scraping
+1.2 Data cleaning
+
 # Job-Recommendation-1.1-Web-scraping
 ## Objective
-We are a team of five, and we are going to work on a Job recommendation system, to match CV and Job posts. <br>
+We first start with Job recommendation.
 To create a databse for the job recommendations, we need to get data from the recruitment websites. <br>
 We chose to web scrape some jobs posts from JobsDB (URL: https://hk.jobsdb.com/hk)
 
